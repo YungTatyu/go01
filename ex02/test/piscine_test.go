@@ -1,4 +1,4 @@
-package main
+package test
 
 import (
 	"piscine"
@@ -34,6 +34,22 @@ func TestRemain(t *testing.T) {
 	piscine.DivMod(10, 3, &div, &mod)
 	expect(div, 3, t)
 	expect(mod, 1, t)
+}
+
+func TestNegative(t *testing.T) {
+	var div int
+	var mod int
+	piscine.DivMod(-7, 3, &div, &mod)
+	expect(div, -2, t)
+	expect(mod, -1, t)
+}
+
+func TestDevideZero(t *testing.T) {
+	var div int
+	var mod int
+	piscine.DivMod(0, 3, &div, &mod)
+	expect(div, 0, t)
+	expect(mod, 0, t)
 }
 
 func TestDividedByZero(t *testing.T) {

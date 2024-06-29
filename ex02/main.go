@@ -8,7 +8,7 @@ import (
 func main() {
 	var div int
 	var mod int
-	piscine.DivMod(12, 2, &div, &mod)
+	piscine.DivMod(0, 2, &div, &mod)
 	fmt.Println("div=", div)
 	fmt.Println("mod=", mod)
 }
