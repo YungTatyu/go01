@@ -1,26 +1,28 @@
 package piscine
 
-func quicksort(nums []int, low, high int) {
-	if low < high {
-		pivotIndex := partition(nums, low, high)
-		quicksort(nums, low, pivotIndex-1)
-		quicksort(nums, pivotIndex+1, high)
+func quicksort(nums []int, leftmostIndex, righmostIndex int) {
+	if leftmostIndex < righmostIndex {
+		pivotIndex := partition(nums, leftmostIndex, righmostIndex)
+		// partitionで分けられた左右のpartをそれぞれsortする
+		quicksort(nums, leftmostIndex, pivotIndex-1)
+		quicksort(nums, pivotIndex+1, righmostIndex)
 	}
 }
 
-func partition(nums []int, low, high int) int {
-	pivot := nums[high] // ピボットを右端とする
-	cur_low := low - 1
+func partition(nums []int, leftmostIndex, rightmostIndex int) int {
+	pivot := nums[rightmostIndex] // ピボットを右端とする
+	// pivotより値が大きい要素のindex
+	firstGreterIndex := leftmostIndex - 1
 
-	for i := low; i < high; i++ {
+	for i := leftmostIndex; i < rightmostIndex; i++ {
 		if nums[i] <= pivot {
-			cur_low++
-			nums[cur_low], nums[i] = nums[i], nums[cur_low]
+			firstGreterIndex++
+			nums[firstGreterIndex], nums[i] = nums[i], nums[firstGreterIndex]
 		}
 	}
-
-	nums[cur_low+1], nums[high] = nums[high], nums[cur_low+1]
-	return cur_low + 1
+	firstGreterIndex++ // pivotと一番左にあるpivotより大きい値をswap
+	nums[firstGreterIndex], nums[rightmostIndex] = nums[rightmostIndex], nums[firstGreterIndex]
+	return firstGreterIndex
 }
 
 func SortIntegerTable(table []int) {
