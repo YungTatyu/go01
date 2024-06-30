@@ -1,3 +1,3 @@
-module ex10
+module ex11
 
 go 1.22.4
